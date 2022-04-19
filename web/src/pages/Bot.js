@@ -20,6 +20,7 @@ export default class Bot extends Component {
       body: JSON.stringify({ Bot_Token: this.state.botToken, Bot_Name: this.state.botName })
     };
     fetch('http://localhost:3000/bot/token', requestOptions)
+    this.getBotInfo()
   }
 
   startBot = () => {
