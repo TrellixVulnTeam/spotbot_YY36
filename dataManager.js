@@ -17,23 +17,40 @@ module.exports.createDB = function(userList) {
 
 function getUsers() {
     var userList = []
+    db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER UNIQUE , name TEXT, image TEXT)");
     db.each("SELECT id, name, image FROM users", (err, row) => {
-      userList.push({
-        id: row.id,
-        name: row.name,
-        image: row.image
-      })
+      try {
+        userList.push({
+          id: row.id,
+          name: row.name,
+          image: row.image
+        })
+      } catch (error) {
+        console.log(error);
+      }
       fs.writeFile('users.txt',`${JSON.stringify(userList)}`, function (err, data) {
         if (err) throw err;
       });
     });
-    var data = fs.readFileSync('users.txt', 'utf-8');
+    try {
+      var data = fs.readFileSync('users.txt', 'utf-8');
+    } catch (error) {
+      fs.writeFile('users.txt',``, function (err, data) {
+        if (err) throw err;
+      });
+    }
     return data
 }
 exports.Users = getUsers();
 
 function getBotInfo() {
-  var data = fs.readFileSync('bot.txt', 'utf-8');
+  try {
+    var data = fs.readFileSync('bot.txt', 'utf-8'); 
+  } catch (error) {
+    fs.writeFile('bot.txt',``, function (err, data) {
+      if (err) throw err;
+    });
+  }
   return data
 }
 exports.botInfo = getBotInfo();
