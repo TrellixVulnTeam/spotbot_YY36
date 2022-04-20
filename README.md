@@ -7,7 +7,6 @@ spotbot is a new generation discord bot, it has an easy to use and simple user p
 ### Dependencies
 
 * [node](https://nodejs.org/en/ "node").
-* ex. Windows 10
 
 ### Installing
 
