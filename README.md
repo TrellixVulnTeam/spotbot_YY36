@@ -22,10 +22,18 @@ Run it in the project file
 $ npm install
 ```
 
+```
+$ node app.js
+```
+
 run it in the web folder inside the project file `/spotbot/web`
 
 ```
 $ npm install
+```
+
+```
+$ npm start
 ```
 
 ## API Documentation
