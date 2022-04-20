@@ -28,6 +28,11 @@ export default class Bot extends Component {
     fetch('http://localhost:3000/bot/start', { headers })
   }
 
+  deleteBot = () => {
+    const headers = { 'Content-Type': 'application/json' }
+    fetch('http://localhost:3000/bot/delete', { headers })
+  }
+
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
@@ -46,7 +51,7 @@ export default class Bot extends Component {
   render() {
     return (
       <div>
-        <BotTable BotInfo={this.state.BotInfo} handleChange={this.handleChange} handleSubmit={this.handleSubmit} startBot={this.startBot} />
+        <BotTable BotInfo={this.state.BotInfo} handleChange={this.handleChange} handleSubmit={this.handleSubmit} startBot={this.startBot} deleteBot={this.deleteBot} />
       </div>
     )
   }
