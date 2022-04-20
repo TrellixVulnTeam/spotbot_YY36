@@ -14,3 +14,18 @@ module.exports.createDB = function(userList) {
         stmt.finalize();
     });
 }
+
+module.exports.dropDB = function() {
+    db.serialize(() => {
+        db.run("DROP TABLE IF EXISTS users");
+    });
+    fs.writeFile('users.txt',``, function (err, data) {
+        if (err) throw err;
+      });
+    fs.writeFile('bot.txt',``, function (err, data) {
+        if (err) throw err;
+    });
+    fs.writeFile('.env',``, function (err, data) {
+        if (err) throw err;
+    });
+}
