@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('./data.db');
 const fs = require('fs');
+const dataManager = require('./dataManager')
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded()
 app.use(cors());
@@ -54,6 +55,13 @@ app.get('/bot/users',function(req,res){
   var data = getUsers();
   var dataJSON = JSON.parse(data);
   res.send(dataJSON);
+  res.status(200)
+  res.end()
+})
+
+app.get('/bot/delete', function (req, res) {
+  dataManager.dropDB();
+  res.send('Deleted!')
   res.status(200)
   res.end()
 })
