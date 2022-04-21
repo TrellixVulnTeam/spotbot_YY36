@@ -1,9 +1,12 @@
 import React from 'react'
-import { Table, Container } from 'react-bootstrap'
+import { Table, Container, Button} from 'react-bootstrap'
 
 const UsersList = props => {
     return (
         <Container>
+            <div className='text-center' >
+                <Button variant="primary" onClick={props.refreshUsers}>Refresh</Button>
+            </div>
             <Table striped bordered hover>
                 <thead>
                     <tr className='text-center'>

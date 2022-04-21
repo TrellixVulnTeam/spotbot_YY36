@@ -16,10 +16,14 @@ export default class Users extends Component {
     this.getUserList()
   }
 
+  refreshUsers = () => {
+    this.getUserList()
+  }
+
   render() {
     return (
       <div>
-        <UsersList Users={this.state.Users} />
+        <UsersList Users={this.state.Users} refreshUsers={this.refreshUsers} />
       </div>
     )
   }
