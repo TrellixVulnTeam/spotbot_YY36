@@ -13,6 +13,7 @@ const NavBar = () => {
       <Nav className="me-auto">
         <Link to='/' className='nav-link'>Bot</Link>
         <Link to='/users' className='nav-link'>Users</Link>
+        <Link to='/winners' className='nav-link'>Winners</Link>
       </Nav>
     </Navbar.Collapse>
   </Container>
