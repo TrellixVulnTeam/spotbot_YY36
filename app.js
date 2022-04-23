@@ -66,6 +66,14 @@ app.get('/bot/delete', function (req, res) {
   res.end()
 })
 
+app.get('/bot/winners', function (req, res) {
+  var data = getWinners();
+  var dataJSON = JSON.parse(data);
+  res.send(dataJSON);
+  res.status(200)
+  res.end()
+})
+
 app.listen(3000)
 
 function getBotInfo() {
@@ -100,6 +108,35 @@ function getUsers() {
     var data = fs.readFileSync('users.txt', 'utf-8');
   } catch (error) {
     fs.writeFile('users.txt',``, function (err, data) {
+      if (err) throw err;
+    });
+  }
+  return data
+}
+
+function getWinners() {
+  var winnerList = []
+  db.run("CREATE TABLE IF NOT EXISTS Winners (discord_id INTEGER , date TEXT, discord_name TEXT, discord_image TEXT, discord_server_name TEXT)");
+  db.each("SELECT discord_id, discord_name, discord_image,date, discord_server_name FROM winners", (err, row) => {
+    try {
+      winnerList.push({
+        discord_id: row.discord_id,
+        discord_name: row.discord_name,
+        discord_image: row.discord_image,
+        date: row.date,
+        discord_server_name: row.discord_server_name
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    fs.writeFile('winners.txt',`${JSON.stringify(winnerList)}`, function (err, data) {
+      if (err) throw err;
+    });
+  });
+  try {
+    var data = fs.readFileSync('winners.txt', 'utf-8');
+  } catch (error) {
+    fs.writeFile('winners.txt',``, function (err, data) {
       if (err) throw err;
     });
   }

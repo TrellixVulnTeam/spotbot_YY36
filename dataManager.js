@@ -29,3 +29,13 @@ module.exports.dropDB = function() {
         if (err) throw err;
     });
 }
+
+module.exports.createWinner = function(user,date,serverName) {
+    db.serialize(() => {
+        db.run("CREATE TABLE IF NOT EXISTS Winners (discord_id INTEGER , date TEXT, discord_name TEXT, discord_image TEXT, discord_server_name TEXT)");
+    
+        const stmt = db.prepare("INSERT OR IGNORE INTO Winners(discord_id, date, discord_name, discord_image, discord_server_name) VALUES (?, ?, ?, ?, ?)");
+        stmt.run(user.id,date,user.name,user.image,serverName);
+        stmt.finalize();
+    });
+}
