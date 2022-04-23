@@ -40,8 +40,8 @@ $ npm start
 
 ###  POST `bot/token`
 * body
-Bot_Token
-Bot_Name
+- Bot_Token
+- Bot_Name
 
 ### GET `bot/users`
 * Spotbot shows online users on all active servers
@@ -54,6 +54,9 @@ Bot_Name
 
 ### GET `bot/start`
 * Starts the Discord bot
+
+### GET `bot/winners`
+* returns a list of winners
 
 
 ## License
