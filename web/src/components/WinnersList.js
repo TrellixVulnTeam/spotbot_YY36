@@ -1,10 +1,13 @@
 import React from 'react'
-import {Table} from 'react-bootstrap'
+import {Container, Table, Button} from 'react-bootstrap'
 
 
 const WinnersList = props => {
     return (
-        <div>
+        <Container>
+             <div className='text-center' >
+                <Button variant="primary" onClick={props.getWinners}>Refresh</Button>
+            </div>
             <Table striped bordered hover>
                 <thead>
                     <tr className='text-center'>
@@ -29,7 +32,7 @@ const WinnersList = props => {
                     ))}
                 </tbody>
             </Table>
-        </div>
+        </Container>
     )
 }
 

@@ -19,7 +19,7 @@ export default class Winners extends Component {
     render() {
         return (
             <div>
-                <WinnersList Winners={this.state.Winners} />
+                <WinnersList Winners={this.state.Winners} getWinners={this.getWinners} />
             </div>
         )
     }
